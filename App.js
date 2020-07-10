@@ -1,0 +1,154 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
+import * as React from 'react';
+import { View, Button, Text ,SafeAreaView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+// import 'react-native-gesture-handler'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import HomeScreen from './src/screen/HomeScreen'
+import AdressBookScreen from './src/screen/AdressBookScreen'
+import FindScreen from './src/screen/FindScreen'
+import MyScreen from './src/screen/Myscreen'
+
+import BarIcon from './components/BarIcon'
+import CommonIcon from './components/CommonIcon'
+
+const Tab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="微信"
+        component={HomeScreen}
+        options={{
+          // headerTransparent: true,
+          headerTitleStyle: { fontSize: 18 },
+          headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
+          headerRight: () => {
+            return (
+              <View style={{display:'flex',flexDirection:'row',flex:1,justifyContent:'space-around',alignItems:'center'}}>
+                <CommonIcon
+                  name='icon-search' size={20} color='#000'
+                />
+                <View style={{width:15}}></View>
+                <CommonIcon
+                  name='icon-add' size={20} color='#000'
+                />
+                <View style={{width:10}}></View>
+              </View>
+            )
+          }
+        }}
+
+      />
+    </HomeStack.Navigator>
+  );
+}
+
+const AdressBookStack = createStackNavigator();
+function AdressBookStackScreen() {
+  return (
+    <AdressBookStack.Navigator>
+      <AdressBookStack.Screen
+        name="通讯录"
+        component={AdressBookScreen}
+        options={{
+          // headerTransparent: true,
+          headerTitleStyle: { fontSize: 18 },
+          headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
+          headerRight: () => {
+            return (
+              <View style={{display:'flex',flexDirection:'row',flex:1,justifyContent:'space-around',alignItems:'center'}}>
+                <CommonIcon
+                  name='icon-search' size={20} color='#000'
+                />
+                <View style={{width:15}}></View>
+                <CommonIcon
+                  name='icon-add' size={20} color='#000'
+                />
+                <View style={{width:10}}></View>
+              </View>
+            )
+          }
+        }} />
+    </AdressBookStack.Navigator>
+  );
+}
+
+const FindStack = createStackNavigator();
+function FindStackScreen() {
+  return (
+    <FindStack.Navigator>
+      <FindStack.Screen
+        name="发现"
+        component={FindScreen}
+        options={{
+          // headerTransparent: true,
+          headerTitleStyle: { fontSize: 18 },
+          headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
+          headerRight: () => {
+            return (
+              <View style={{display:'flex',flexDirection:'row',flex:1,justifyContent:'space-around',alignItems:'center'}}>
+                <CommonIcon
+                  name='icon-search' size={20} color='#000'
+                />
+                <View style={{width:15}}></View>
+                <CommonIcon
+                  name='icon-add' size={20} color='#000'
+                />
+                <View style={{width:10}}></View>
+              </View>
+            )
+          }
+        }}
+      />
+    </FindStack.Navigator>
+  );
+}
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarLabel: route.name === 'Home' ? '微信' : route.name === 'AdressBook' ? '通讯录' : route.name === 'Find' ? '发现' : '我',
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === 'Home') {
+              iconName = focused ? 'icon-tab-message-active' : 'icon-tab-message';
+            } else if (route.name === 'AdressBook') {
+              iconName = focused ? 'icon-tab-address-book-active' : 'icon-tab-address-book';
+            } else if (route.name === 'Find') {
+              iconName = focused
+                ? 'icon-tab-find-active'
+                : 'icon-tab-find';
+            } else if (route.name === 'My') {
+              iconName = focused
+                ? 'icon-tab-my-active'
+                : 'icon-tab-my';
+            }
+            // You can return any component that you like here!
+            return <BarIcon name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: '#48BD59',
+          inactiveTintColor: '#000000',
+        }}
+      >
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="AdressBook" component={AdressBookStackScreen} />
+        <Tab.Screen name="Find" component={FindStackScreen} />
+        <Tab.Screen name="My" component={MyScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
