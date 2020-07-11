@@ -42,6 +42,7 @@ export default class HomeScreen extends React.Component {
     }
 
     renderItem = (iteminfo) => {
+        
         let item = iteminfo.item
         return (
             item ? <TouchableHighlight
