@@ -30,6 +30,9 @@ export default class HomeScreen extends React.Component {
                                 style={styles.avatar}
                                 source={require('../../img/transmission.jpg')}
                             />
+                            <View style={{ position: 'relative', top: -60, right: -28}} >
+                                {/* <Badge status='error' value="2" style={{display:'none'}}/>c */}
+                            </View>
                         </View>
                         <View style={styles.chatContent}>
                             <View style={styles.otherInfo}>
@@ -49,7 +52,7 @@ export default class HomeScreen extends React.Component {
                     style={styles.button}
                     onPress={() => { }}>
                     <View style={styles.listItem}>
-                        <View style={styles.avatarContent}>
+                        <View style={{...styles.avatarContent,marginTop:15}}>
                             <Image
                                 style={styles.avatar}
                                 source={require('../../img/JackMa.jpg')}
@@ -99,13 +102,13 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: "center"
     },
-    avatarContent: {
-        paddingTop:20,
+    avatarContent: { 
+        // paddingTop:20,
         width: 80,
         height: 80,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     errorBadge: {
         width: 10,
