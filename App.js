@@ -32,7 +32,7 @@ function HomeStackScreen() {
         options={{
           // headerTransparent: true,
           headerTitleStyle: { fontSize: 18 },
-          headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
+          headerStyle: { height: 50, backgroundColor: "#EDEDED" },
           headerRight: () => {
             return (
               <View style={{display:'flex',flexDirection:'row',flex:1,justifyContent:'space-around',alignItems:'center'}}>
