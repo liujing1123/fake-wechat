@@ -34,7 +34,7 @@ export default class HomeScreen extends React.Component {
                         <View style={styles.chatContent}>
                             <View style={styles.otherInfo}>
                                 <View>
-                                    <Text style={{ paddingTop: 12, color: '#0D0D0D', fontSize: 16 }}>文件传输助手</Text>
+                                    <Text style={{ paddingTop: 12, color: '#0D0D0D', fontSize: 16 }}>文件传输助手 </Text>
                                     <Text style={{ paddingTop: 5, color: '#B3B3B3', fontSize: 12 }}>传了个啥文件给我</Text>
                                 </View>
                             </View>
