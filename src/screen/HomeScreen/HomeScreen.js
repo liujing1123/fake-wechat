@@ -30,25 +30,41 @@ export default class HomeScreen extends React.Component {
                 },
                 {
                     id: '2',
-                    name: '马云',
-                    avatar: pic2,
-                    message: '年薪一百万，你看行吗？',
+                    name: '易烊千玺',
+                    avatar: pic3,
+                    message: '我来接你下班啦',
                     time: '昨天',
-                    unReadMsg: 2,
-                },
-                
+                    unReadMsg: 1,
+                }
             ]
         }
     }
 
+    componentDidMount() {
+        console.log(this.props.navigation, 'HomeScreen');
+    }
+
+    getMsgDetail = (item) => {
+        let {contactList} = this.state
+        contactList.forEach(listItem=>{
+            if(listItem.id==item.id){
+                listItem.unReadMsg=null
+            }
+        })
+        this.setState({
+            contactList
+        })
+        console.log('getMsgDetail',item);
+        this.props.navigation.navigate('detail', { item: item })
+    }
     renderItem = (iteminfo) => {
-        
+
         let item = iteminfo.item
         return (
             item ? <TouchableHighlight
                 underlayColor='#ccc'
                 style={styles.button}
-                onPress={() => { }}>
+                onPress={() => { this.getMsgDetail(item) }}>
                 <View style={styles.listItem}>
                     <View style={{ ...styles.avatarContent, marginTop: item.unReadMsg ? 15 : 0 }}>
                         <Image
@@ -78,29 +94,29 @@ export default class HomeScreen extends React.Component {
     }
 
     refresh = () => {
-        let state =this.state
-        if(state.contactList.length>=3){
-            state.contactList.splice(state.contactList.length-1,1)
+        let state = this.state
+        if (state.contactList.length >= 3) {
+            state.contactList.splice(state.contactList.length - 1, 1)
         }
-        state.refreshing=true
-        
+        state.refreshing = true
+
         this.setState({
-           ...state 
+            ...state
         })
         setTimeout(() => {
             state.contactList.push({
                 id: '3',
-                name: '易烊千玺',
-                avatar: pic3,
-                message: '我来接你下班啦',
-                time: '下午5:20',
-                unReadMsg: 4,
+                name: '马云',
+                avatar: pic2,
+                message: '年薪一百万，你看行吗？',
+                time: '昨天',
+                unReadMsg: 1,
             })
-            state.refreshing=false
+            state.refreshing = false
             this.setState({
                 ...state
             })
-        }, 3000)
+        }, 1000)
     }
 
     render() {

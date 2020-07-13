@@ -7,7 +7,7 @@
  */
 
 import * as React from 'react';
-import { View, Button, Text ,SafeAreaView } from 'react-native';
+import { View, Button, Text, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import 'react-native-gesture-handler'
@@ -17,6 +17,7 @@ import HomeScreen from './src/screen/HomeScreen'
 import AdressBookScreen from './src/screen/AdressBookScreen'
 import FindScreen from './src/screen/FindScreen'
 import MyScreen from './src/screen/Myscreen'
+import DetailScreen from './src/screen/DetailScreen'
 
 import BarIcon from './components/BarIcon'
 import CommonIcon from './components/CommonIcon'
@@ -27,28 +28,48 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
-        name="微信"
+        name="Home"
         component={HomeScreen}
         options={{
+          headerTitle: '微信',
           // headerTransparent: true,
           headerTitleStyle: { fontSize: 18 },
           headerStyle: { height: 50, backgroundColor: "#EDEDED" },
           headerRight: () => {
             return (
-              <View style={{display:'flex',flexDirection:'row',flex:1,justifyContent:'space-around',alignItems:'center'}}>
+              <View style={{ display: 'flex', flexDirection: 'row', flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
                 <CommonIcon
                   name='icon-search' size={20} color='#000'
                 />
-                <View style={{width:15}}></View>
+                <View style={{ width: 15 }}></View>
                 <CommonIcon
                   name='icon-add' size={20} color='#000'
                 />
-                <View style={{width:10}}></View>
+                <View style={{ width: 10 }}></View>
               </View>
             )
           }
         }}
-
+      />
+      <HomeStack.Screen
+        name="detail"
+        component={DetailScreen}
+        options={(navigation)=>({
+          headerTitle:navigation.route&& navigation.route.params?navigation.route.params.item.name:'',
+          // headerTransparent: true,
+          headerTitleStyle: { fontSize: 18 },
+          headerStyle: { height: 50, backgroundColor: "#EDEDED" },
+          headerRight: () => {
+            return (
+              <View style={{ display: 'flex', flexDirection: 'row', flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
+                <CommonIcon
+                  name='icon-ellipses' size={20} color='#000'
+                />
+                <View style={{ width: 10 }}></View>
+              </View>
+            )
+          }
+        })}
       />
     </HomeStack.Navigator>
   );
@@ -67,15 +88,15 @@ function AdressBookStackScreen() {
           headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
           headerRight: () => {
             return (
-              <View style={{display:'flex',flexDirection:'row',flex:1,justifyContent:'space-around',alignItems:'center'}}>
+              <View style={{ display: 'flex', flexDirection: 'row', flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
                 <CommonIcon
                   name='icon-search' size={20} color='#000'
                 />
-                <View style={{width:15}}></View>
+                <View style={{ width: 15 }}></View>
                 <CommonIcon
                   name='icon-add' size={20} color='#000'
                 />
-                <View style={{width:10}}></View>
+                <View style={{ width: 10 }}></View>
               </View>
             )
           }
@@ -97,23 +118,37 @@ function FindStackScreen() {
           headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
           headerRight: () => {
             return (
-              <View style={{display:'flex',flexDirection:'row',flex:1,justifyContent:'space-around',alignItems:'center'}}>
+              <View style={{ display: 'flex', flexDirection: 'row', flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
                 <CommonIcon
                   name='icon-search' size={20} color='#000'
                 />
-                <View style={{width:15}}></View>
+                <View style={{ width: 15 }}></View>
                 <CommonIcon
                   name='icon-add' size={20} color='#000'
                 />
-                <View style={{width:10}}></View>
+                <View style={{ width: 10 }}></View>
               </View>
             )
-          }
+          },
         }}
       />
     </FindStack.Navigator>
   );
 }
+
+
+function checkTabVisible(navigation, visibleRouteName) {
+  if(navigation.route&&navigation.route.state){
+    const routeName = navigation.route.state.routeNames[navigation.route.state.index];
+    let tabBarVisible = true;
+    if (routeName !== visibleRouteName) {
+      tabBarVisible = false;
+    }
+    return tabBarVisible;
+  }
+}
+
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -144,7 +179,12 @@ export default function App() {
           inactiveTintColor: '#000000',
         }}
       >
-        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen
+          name="Home"
+          options={(navigation) => ({
+            tabBarVisible: checkTabVisible(navigation, "Home"),
+          })}
+          component={HomeStackScreen} />
         <Tab.Screen name="AdressBook" component={AdressBookStackScreen} />
         <Tab.Screen name="Find" component={FindStackScreen} />
         <Tab.Screen name="My" component={MyScreen} />
