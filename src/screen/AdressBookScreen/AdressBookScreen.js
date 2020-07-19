@@ -1,41 +1,84 @@
 import * as React from 'react';
-import { View, Button, Text, SafeAreaView, Dimensions, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import 'react-native-gesture-handler'
-import CommonIcon from '../../../components/CommonIcon'
-import ColorWheel from './component/ColorWheel'
-import colorsys from '../../utils/colorsys'
+import { View, Button, Text, SafeAreaView, StyleSheet, FlatList, TouchableHighlight, Image } from 'react-native';
+const colorWheel = require('./img/color-wheel.png')
+const slider = require('./img/slider.png')
 export default class AdressBookScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            backgroundColor: '#cccccc'
+            funList: [{ id: 1, funName: '颜色拾取器', avatar: colorWheel ,funLabe:'colorWheel'}, { id: 2, funName: '滑动条', avatar: slider ,funLabe:'slider'}]
         }
     }
-    changeColor = (color) => {
-        // console.log('changeColor', color);
-        // let color1=Object.assign({},color,{v:100})
-        // console.log(color1,'color1');
-        this.setState({
-            backgroundColor: colorsys.hsv2Hex(color)
-        })
+
+    renderItem = (lstItem) => {
+        let item = lstItem.item
+        return (
+            item ? <TouchableHighlight
+                underlayColor='#ccc'
+                style={styles.detailButton}
+                onPress={() => { this.goTofunPage(item) }}>
+                <View style={styles.listItem}>
+                    <View style={{ ...styles.avatarContent }}>
+                        <Image
+                            style={styles.avatar}
+                            source={item.avatar}
+                        />
+                    </View>
+                    <View style={styles.funNameContent}>
+                        <Text style={{fontSize:16}}>{item.funName}</Text>
+                    </View>
+                </View>
+            </TouchableHighlight> : null
+        )
+    }
+
+    goTofunPage=(item)=>{
+        this.props.navigation.navigate('function', { item: item })
     }
 
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "#fff", width: '100%', height: '100%', paddingTop: 0 }}>
-                <View>
-                    <ColorWheel
-                        initialColor="#ee0000"
-                        onColorChange={this.changeColor}
-                        // style={{width: Dimensions.get('window').width}}
-                        style={{ width: Dimensions.get('window').width, backgroundColor: this.state.backgroundColor }}
-                        thumbSize={30}
-                    />
-                </View>
+            <View style={{ backgroundColor: "#fff", height: '100%' }}>
+                <FlatList
+                    data={this.state.funList}
+                    renderItem={this.renderItem}
+                    keyExtractor={item => item.id}
+                // onRefresh={this.refresh}
+                // refreshing={this.state.refreshing}
+                />
             </View>
         );
     }
 }
+const styles = StyleSheet.create({
+    detailButton: {
+        backgroundColor: "#FFF",
+        height: 70,
+        width: '100%',
+        paddingLeft: 10,
+        borderBottomColor: '#F0F0F0'
+    },
+    listItem: {
+        flexDirection: 'row',
+        height: '100%',
+    },
+    avatarContent: {
+        width: 70,
+        height: 70,
+        display: 'flex',
+        justifyContent: 'center',
+    },
+    avatar: {
+        width: 50,
+        height: 50,
+        borderRadius: 10
+    },
+    funNameContent: {
+        height: "100%",
+        flex:1,
+        justifyContent: "center",
+        alignItems: "flex-start",
+        borderBottomWidth:1,
+        borderBottomColor:"#EFEFEF",
+    }
+});

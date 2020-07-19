@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, TouchableHighlight, Image, View, Button, Text, FlatList, SafeAreaView } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import 'react-native-gesture-handler'
 import { Badge } from 'react-native-elements';
-import BarIcon from '../../../components/BarIcon'
 const pic1 = require('../../img/transmission.jpg')
 const pic2 = require('../../img/JackMa.jpg')
 const pic3 = require('../../img/handsomeboy.jpg')
@@ -35,7 +30,15 @@ export default class HomeScreen extends React.Component {
                     message: '我来接你下班啦',
                     time: '昨天',
                     unReadMsg: 1,
-                }
+                },
+                {
+                    id: '3',
+                    name: '马云',
+                    avatar: pic2,
+                    message: '年薪一百万，你看行吗？',
+                    time: '昨天',
+                    unReadMsg: 1,
+                },
             ]
         }
     }
@@ -45,16 +48,16 @@ export default class HomeScreen extends React.Component {
     }
 
     getMsgDetail = (item) => {
-        let {contactList} = this.state
-        contactList.forEach(listItem=>{
-            if(listItem.id==item.id){
-                listItem.unReadMsg=null
+        let { contactList } = this.state
+        contactList.forEach(listItem => {
+            if (listItem.id == item.id) {
+                listItem.unReadMsg = null
             }
         })
         this.setState({
             contactList
         })
-        console.log('getMsgDetail',item);
+        console.log('getMsgDetail', item);
         this.props.navigation.navigate('detail', { item: item })
     }
     renderItem = (iteminfo) => {
@@ -95,23 +98,23 @@ export default class HomeScreen extends React.Component {
 
     refresh = () => {
         let state = this.state
-        if (state.contactList.length >= 3) {
-            state.contactList.splice(state.contactList.length - 1, 1)
-        }
+        // if (state.contactList.length >= 3) {
+        //     state.contactList.splice(state.contactList.length - 1, 1)
+        // }
         state.refreshing = true
 
         this.setState({
             ...state
         })
         setTimeout(() => {
-            state.contactList.push({
-                id: '3',
-                name: '马云',
-                avatar: pic2,
-                message: '年薪一百万，你看行吗？',
-                time: '昨天',
-                unReadMsg: 1,
-            })
+            // state.contactList.push({
+            //     id: '3',
+            //     name: '马云',
+            //     avatar: pic2,
+            //     message: '年薪一百万，你看行吗？',
+            //     time: '昨天',
+            //     unReadMsg: 1,
+            // })
             state.refreshing = false
             this.setState({
                 ...state

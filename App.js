@@ -18,6 +18,7 @@ import AdressBookScreen from './src/screen/AdressBookScreen'
 import FindScreen from './src/screen/FindScreen'
 import MyScreen from './src/screen/Myscreen'
 import DetailScreen from './src/screen/DetailScreen'
+import FunctionScreen from './src/screen/FunctionScreen'
 
 import BarIcon from './components/BarIcon'
 import CommonIcon from './components/CommonIcon'
@@ -80,9 +81,10 @@ function AdressBookStackScreen() {
   return (
     <AdressBookStack.Navigator>
       <AdressBookStack.Screen
-        name="通讯录"
+        name="AdressBook"
         component={AdressBookScreen}
         options={{
+          headerTitle:'通讯录',
           // headerTransparent: true,
           headerTitleStyle: { fontSize: 18 },
           headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
@@ -101,6 +103,16 @@ function AdressBookStackScreen() {
             )
           }
         }} />
+      <AdressBookStack.Screen
+         name="function"
+         component={FunctionScreen}
+         options={(navigation)=>({
+           headerTitle:navigation.route&& navigation.route.params?navigation.route.params.item.funName:'',
+           // headerTransparent: true,
+           headerTitleStyle: { fontSize: 18 },
+           headerStyle: { height: 50, backgroundColor: "#EDEDED" },
+         })} 
+         />
     </AdressBookStack.Navigator>
   );
 }
@@ -110,9 +122,10 @@ function FindStackScreen() {
   return (
     <FindStack.Navigator>
       <FindStack.Screen
-        name="发现"
+        name="Find"
         component={FindScreen}
         options={{
+          headerTitle:'发现',
           // headerTransparent: true,
           headerTitleStyle: { fontSize: 18 },
           headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
@@ -185,7 +198,11 @@ export default function App() {
             tabBarVisible: checkTabVisible(navigation, "Home"),
           })}
           component={HomeStackScreen} />
-        <Tab.Screen name="AdressBook" component={AdressBookStackScreen} />
+        <Tab.Screen name="AdressBook"
+        options={(navigation) => ({
+          tabBarVisible: checkTabVisible(navigation, "AdressBook"),
+        })}
+        component={AdressBookStackScreen} />
         <Tab.Screen name="Find" component={FindStackScreen} />
         <Tab.Screen name="My" component={MyScreen} />
       </Tab.Navigator>

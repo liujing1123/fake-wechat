@@ -1,9 +1,5 @@
 import * as React from 'react';
 import { View, Button, Text, SafeAreaView, StyleSheet, TextInput, Image, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import 'react-native-gesture-handler'
 import CommonIcon from '../../../components/CommonIcon'
 const yyqx = require('../../img/handsomeboy.jpg')
 import { log } from 'react-native-reanimated';

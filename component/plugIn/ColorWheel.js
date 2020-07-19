@@ -9,9 +9,9 @@ import {
     StyleSheet,
     View,
 } from 'react-native'
-import colorsys from '../../../utils/colorsys'
+import colorsys from '../../src/utils/colorsys'
 
-export default class ColorWheel extends Component {
+export default class Wheel extends Component {
     static defaultProps = {
         thumbSize: 50,
         initialColor: '#ffffff',
@@ -147,15 +147,13 @@ export default class ColorWheel extends Component {
 
     updateColor = ({ nativeEvent }) => {
         const { deg, radius } = this.calcPolar(nativeEvent)
-        const currentColor = colorsys.hsv2Hex({ h: deg, s: 100 * radius, v: 100 })
-        console.log('updateColor', currentColor);
+        const currentColor = colorsys.hsv2Hex({ h: deg, s: 100 * radius, v: 100 })//h:角度，决定是哪种基础颜色，s:饱和度：0-100，v:亮度（0-100）100时颜色最亮
         this.setState({ currentColor })
         this.props.onColorChange({ h: deg, s: 100 * radius, v: 100 })
         // this.props.onColorChange({ h: deg, s: 100, v: 100 })
     }
 
     forceUpdate = color => {
-        console.log('updateColor', color);
         const { h, s, v } = colorsys.hex2Hsv(color)
         const { left, top } = this.calcCartesian(h, s / 100)
         this.setState({ currentColor: color })
@@ -196,7 +194,6 @@ export default class ColorWheel extends Component {
         ]
 
         const panHandlers = this._panResponder && this._panResponder.panHandlers || {}
-
         return (
             <View
                 ref={node => {
@@ -207,7 +204,7 @@ export default class ColorWheel extends Component {
                 style={[styles.coverResponder, this.props.style]}>
                 <Image
                     style={[styles.img, { height: radius ? radius * 2 : 150, width: radius ? radius * 2 : 150 }]}
-                    source={require('../color-wheel.png')}
+                    source={require('../imgs/color-wheel.png')}
                 />
                 <Animated.View style={[this.state.pan.getLayout(), thumbStyle]} />
             </View>
