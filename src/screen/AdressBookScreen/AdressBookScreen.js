@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { View, Button, Text, SafeAreaView, StyleSheet, FlatList, TouchableHighlight, Image } from 'react-native';
 const colorWheel = require('./img/color-wheel.png')
-const slider = require('./img/slider.png')
+const colorRing = require('../../img/temp-ring.png')
 export default class AdressBookScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            funList: [{ id: 1, funName: '颜色拾取器', avatar: colorWheel ,funLabe:'colorWheel'}, { id: 2, funName: '滑动条', avatar: slider ,funLabe:'slider'}]
+            funList: [{ id: 1, funName: '色盘', avatar: colorWheel ,funLabe:'colorWheel'}, { id: 2, funName: '色环', avatar: colorRing ,funLabe:'tempWheel'}]
         }
     }
 
