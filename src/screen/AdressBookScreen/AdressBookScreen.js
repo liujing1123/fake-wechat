@@ -6,7 +6,7 @@ export default class AdressBookScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            funList: [{ id: 1, funName: '色盘', avatar: colorWheel ,funLabe:'colorWheel'}, { id: 2, funName: '色环', avatar: colorRing ,funLabe:'tempWheel'}]
+            funList: [{ id: 1, funName: '色盘', avatar: colorWheel ,funLabe:'colorWheel'}, { id: 2, funName: '色环', avatar: colorRing ,funLabe:'tempWheel'},{ id: 3, funName: '手势', avatar: "" ,funLabe:'panResponder'}]
         }
     }
 

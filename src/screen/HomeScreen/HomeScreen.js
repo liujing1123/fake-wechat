@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, TouchableHighlight, Image, View, Button, Text, FlatList, SafeAreaView } from "react-native";
+import { StyleSheet, TouchableHighlight, Image, View, Button, Text, FlatList, SafeAreaView ,StatusBar} from "react-native";
 import { Badge } from 'react-native-elements';
 const pic1 = require('../../img/transmission.jpg')
 const pic2 = require('../../img/JackMa.jpg')
@@ -125,6 +125,7 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <View style={styles.listContent}>
+                <StatusBar backgroundColor="#EDEDED" barStyle="dark-content" />
                 <FlatList
                     data={this.state.contactList}
                     renderItem={this.renderItem}
