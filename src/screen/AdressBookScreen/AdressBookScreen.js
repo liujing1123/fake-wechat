@@ -6,7 +6,7 @@ export default class AdressBookScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            funList: [{ id: 1, funName: '色盘', avatar: colorWheel ,funLabe:'colorWheel'}, { id: 2, funName: '色环', avatar: colorRing ,funLabe:'tempWheel'},{ id: 3, funName: '手势', avatar: "" ,funLabe:'panResponder'}]
+            funList: [{ id: 1, funName: '色盘', avatar: colorWheel, funLabe: 'colorWheel' }, { id: 2, funName: '色环', avatar: colorRing, funLabe: 'tempWheel' }, { id: 3, funName: '手势', avatar: colorWheel, funLabe: 'panResponder' }]
         }
     }
 
@@ -25,14 +25,14 @@ export default class AdressBookScreen extends React.Component {
                         />
                     </View>
                     <View style={styles.funNameContent}>
-                        <Text style={{fontSize:16}}>{item.funName}</Text>
+                        <Text style={{ fontSize: 16 }}>{item.funName}</Text>
                     </View>
                 </View>
             </TouchableHighlight> : null
         )
     }
 
-    goTofunPage=(item)=>{
+    goTofunPage = (item) => {
         this.props.navigation.navigate('function', { item: item })
     }
 
@@ -75,10 +75,10 @@ const styles = StyleSheet.create({
     },
     funNameContent: {
         height: "100%",
-        flex:1,
+        flex: 1,
         justifyContent: "center",
         alignItems: "flex-start",
-        borderBottomWidth:1,
-        borderBottomColor:"#EFEFEF",
+        borderBottomWidth: 1,
+        borderBottomColor: "#EFEFEF",
     }
 });
