@@ -77,11 +77,11 @@ export default class TempColorWheel extends Component {
                     [
                         null,//nativeEvent:{pageX:this.state.pan.x,pageY:this.state.pan.y}
                         {
-                            dx: this.state.pan.x,
-                            dy: this.state.pan.y,
+                            dx: this.state.pan.x,//将dx绑定到this.state.pan.x,即this.state.pan.x._value=dx
+                            dy: this.state.pan.y,//将dy绑定到this.state.pan.y,即this.state.pan.y._value=dy
                         },
                     ],
-                    { listener: this.updateColor }
+                    { listener: this.updateColor }//触摸过程中的监听事件
                 )(event, gestureState)//将event和gestureState解构后分别对应上面Animated.event的数组里面的两个对象
             },
             onPanResponderRelease: ({ nativeEvent }) => {//结束了触摸
