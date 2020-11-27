@@ -58,8 +58,24 @@ export default class ColorRing extends Component {
                 })
                 return true
             },
-            onStartShouldSetPanResponder: () => true,
-            onMoveShouldSetPanResponderCapture: () => true,
+            onStartShouldSetPanResponder: ({nativeEvent}, gestureState) => {
+                if (this.outBounds(nativeEvent)) return
+                return true
+            },
+            onMoveShouldSetPanResponderCapture: ({nativeEvent}, gestureState) => {
+                if (this.outBounds(gestureState)) return
+                this.updateColor({ nativeEvent })
+                this.setState({ panHandlerReady: true })
+                this.state.pan.setValue({
+                    x: -this.state.left + nativeEvent.pageX - this.props.thumbSize / 2,
+                    y: -this.state.top + nativeEvent.pageY - this.props.thumbSize / 2,
+                })
+                return true
+            },
+            onMoveShouldSetPanResponder: ({nativeEvent}, gestureState) => {
+                if (this.outBounds(gestureState)) return
+                return true
+            },
             onPanResponderGrant: () => true,
             onPanResponderMove: (event, gestureState) => {
                 if (this.outBounds(gestureState)) return
@@ -75,7 +91,6 @@ export default class ColorRing extends Component {
                     { listener: this.updateColor }
                 )(event, gestureState)
             },
-            onMoveShouldSetPanResponder: () => true,
             onPanResponderRelease: ({ nativeEvent }) => {
                 this.setState({ panHandlerReady: true })
                 this.state.pan.flattenOffset()

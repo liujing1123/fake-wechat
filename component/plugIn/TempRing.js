@@ -40,7 +40,7 @@ export default class TempColorWheel extends Component {
 
     componentDidMount() {
         this._panResponder = PanResponder.create({
-            onStartShouldSetPanResponderCapture: ({ nativeEvent }) => {
+            onStartShouldSetPanResponderCapture: ({ nativeEvent }) => {//开始触摸，只在触摸开始时执行一次
                 if (this.outBounds(nativeEvent)) return
                 this.updateColor({ nativeEvent })
                 this.setState({ panHandlerReady: true })
@@ -51,25 +51,40 @@ export default class TempColorWheel extends Component {
                 })
                 return true
             },
-            onStartShouldSetPanResponder: () => true,
-            onMoveShouldSetPanResponderCapture: () => true,
+            onStartShouldSetPanResponder: ({nativeEvent}, gestureState) => {
+                if (this.outBounds(nativeEvent)) return//这里必须要写，不然就没有下面的onMoveShouldSetPanResponder和onMoveShouldSetPanResponderCapture，暂时不知道为啥
+                return true
+            },
+            onMoveShouldSetPanResponderCapture: ({nativeEvent}, gestureState) => {//在此判断触摸过程中是否响应（触摸过程中一直触发）
+                if (this.outBounds(gestureState)) return
+                this.updateColor({ nativeEvent })
+                this.setState({ panHandlerReady: true })
+                this.state.pan.setValue({
+                    x: -this.state.left + nativeEvent.pageX - this.props.thumbSize / 2,
+                    y: -this.state.top + nativeEvent.pageY - this.props.thumbSize / 2,
+                })
+                return true
+            },
+            onMoveShouldSetPanResponder: ({nativeEvent}, gestureState) => {//触摸过程中是否响应
+                if (this.outBounds(gestureState)) return
+                return true
+            },
             onPanResponderGrant: () => true,
-            onPanResponderMove: (event, gestureState) => {
+            onPanResponderMove: (event, gestureState) => {//触摸中
                 if (this.outBounds(gestureState)) return
                 this.resetPanHandler()
                 return Animated.event(
                     [
-                        null,
+                        null,//nativeEvent:{pageX:this.state.pan.x,pageY:this.state.pan.y}
                         {
                             dx: this.state.pan.x,
                             dy: this.state.pan.y,
                         },
                     ],
                     { listener: this.updateColor }
-                )(event, gestureState)
+                )(event, gestureState)//将event和gestureState解构后分别对应上面Animated.event的数组里面的两个对象
             },
-            onMoveShouldSetPanResponder: () => true,
-            onPanResponderRelease: ({ nativeEvent }) => {
+            onPanResponderRelease: ({ nativeEvent }) => {//结束了触摸
                 this.setState({ panHandlerReady: true })
                 this.state.pan.flattenOffset()
                 let deg=0
