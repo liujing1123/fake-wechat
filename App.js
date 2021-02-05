@@ -22,6 +22,7 @@ import FunctionScreen from './src/screen/FunctionScreen'
 
 import BarIcon from './components/BarIcon'
 import CommonIcon from './components/CommonIcon'
+import Orientation from 'react-native-orientation';
 
 const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -163,6 +164,7 @@ function checkTabVisible(navigation, visibleRouteName) {
 
 
 export default function App() {
+  
   return (
     <NavigationContainer>
       <Tab.Navigator

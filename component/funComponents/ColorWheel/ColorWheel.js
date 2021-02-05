@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Button, Text, SafeAreaView, Dimensions, StyleSheet, FlatList, TouchableHighlight, Image } from 'react-native';
 import Wheel from '../../plugIn/ColorWheel'
-import ColorWheelNew from './ColorWheelNew'
+// import ColorWheelNew from './ColorWheelNew'
 import colorsys from '../../../src/utils/colorsys'
 export default class ColorWheel extends React.Component {
     constructor(props) {
@@ -30,14 +30,14 @@ export default class ColorWheel extends React.Component {
                         thumbSize={30}
 
                     />
-                    <ColorWheelNew
+                    {/* <ColorWheelNew
                         color={backgroundColor}
                         // swatchesOnly={this.state.swatchesOnly}
                         onColorChange={this.changeColor}
                         onColorChangeComplete={this.changeColor}
                         thumbSize={40}
                         sliderSize={40}
-                        noSnap={true} />
+                        noSnap={true} /> */}
                 </View>
             </View>
         );

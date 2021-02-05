@@ -7,7 +7,7 @@ export default class MoveHandle extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            backgroundColor: 'red',
+            backgroundColor: 'pink',
             marginTop: 100,
             marginLeft: 100,
         }
@@ -15,23 +15,24 @@ export default class MoveHandle extends React.Component {
     componentWillMount() {
         this._panResponder = PanResponder.create({
             onStartShouldSetPanResponder: (evt, gestureState) => {
-                console.log('onStartShouldSetPanResponder');
                 return true;
             },
             onMoveShouldSetPanResponder: (evt, gestureState) => {
                 return true;
             },
             onPanResponderGrant: (evt, gestureState) => {
+                console.log('onPanResponderGrant',evt,gestureState);
                 this._highlight();
             },
             onPanResponderMove: (evt, gestureState) => {
-                console.log(`pageX : ${evt.nativeEvent.pageX}   pageY : ${evt.nativeEvent.pageY}`);
+                console.log('onPanResponderMove',evt,gestureState);
                 this.setState({
                     marginLeft: evt.nativeEvent.pageX,
                     marginTop: evt.nativeEvent.pageY,
                 });
             },
             onPanResponderRelease: (evt, gestureState) => {
+                console.log('onPanResponderRelease',evt,gestureState);
                 this._unhighlight();
             },
             onPanResponderTerminate: (evt, gestureState) => {
@@ -41,29 +42,27 @@ export default class MoveHandle extends React.Component {
 
     _unhighlight() {
         this.setState({
-            backgroundColor: 'red',
+            backgroundColor: 'pink',
         });
     }
 
     _highlight() {
         this.setState({
-            backgroundColor: 'blue',
+            backgroundColor: 'lightpink',
         });
     }
 
     render() {
         return (
-            <View style={{ height: '100%', flex: 1 }}>
-                <View style={styles.container}>
+            <View style={{ height: '100%', flex: 1,padding:20 }}>
+                <View style={styles.container} {...this._panResponder.panHandlers}>
                     <View style={[styles.redView,
-                    {
-                        backgroundColor: this.state.backgroundColor,
-                        marginTop: this.state.marginTop,
-                        marginLeft: this.state.marginLeft,
-                    }
-                    ]}
-                        {...this._panResponder.panHandlers}
-                    ></View>
+                    // {
+                    //     backgroundColor: this.state.backgroundColor,
+                    //     marginTop: this.state.marginTop,
+                    //     marginLeft: this.state.marginLeft,
+                    // }
+                    ]}></View>
                 </View>
             </View>
         );
@@ -73,6 +72,8 @@ export default class MoveHandle extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor:"#ccc",
+        borderRadius:10,
     },
     redView: {
         width: 100,
