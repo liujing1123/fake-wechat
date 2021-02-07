@@ -3,20 +3,25 @@ import React from 'react'
 import ColorWheel from '../../component/funComponents/ColorWheel'
 import TempAndColorWheel from '../../component/funComponents/TempAndColorWheel'
 import MoveHandle from '../../component/funComponents/MoveHandle'
+import SliderNew from '../../component/funComponents/SliderNew'
 
 export function mapfuncomponent(funName) {
     console.log('mapfuncomponent', funName);
     if (funName) {
         switch (funName.toLowerCase()) {
             case 'colorwheel':
-                return (< ColorWheel></ColorWheel>);
+                return (< ColorWheel/>);
                 break;
             case 'tempwheel':
-                return (< TempAndColorWheel></TempAndColorWheel>);
+                return (< TempAndColorWheel/>);
                 break;
             case 'panresponder':
-                return (< MoveHandle></MoveHandle>);
+                return (< MoveHandle/>);
                 break;
+            case 'slider':
+                return (< SliderNew/>);
+                break;
+
         }
     }
     return;

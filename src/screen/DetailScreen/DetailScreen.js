@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { View, Button, Text, SafeAreaView, StyleSheet, TextInput, Image, TouchableOpacity, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import CommonIcon from '../../../components/CommonIcon'
-const yyqx = require('../../img/handsomeboy.jpg')
+const yyqx = require('../../../img/handsomeboy.jpg')
 import { log } from 'react-native-reanimated';
-const myavatar = require('../../img/myAvatar.jpg')
+const myavatar = require('../../../img/myAvatar.jpg')
 export default class DetailScreen extends React.Component {
     constructor(props) {
         super(props)

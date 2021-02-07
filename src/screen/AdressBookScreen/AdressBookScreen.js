@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { View, Button, Text, SafeAreaView, StyleSheet, FlatList, TouchableHighlight, Image } from 'react-native';
-const pic1 = require('../../img/pic1.jpg')
-const pic2 = require('../../img/pic2.jpg')
-const pic3 = require('../../img/pic3.jpg')
+const pic1 = require('../../../img/pic1.jpg')
+const pic2 = require('../../../img/pic2.jpg')
+const pic3 = require('../../../img/pic3.jpg')
+const pic4 = require('../../../img/pic4.jpg')
 export default class AdressBookScreen extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            funList: [{ id: 1, funName: '色盘', avatar: pic1, funLabe: 'colorWheel' }, { id: 2, funName: '色环', avatar: pic2, funLabe: 'tempWheel' }, { id: 3, funName: '手势', avatar: pic3, funLabe: 'panResponder' }]
+            funList: [{ id: 1, funName: '色盘', avatar: pic1, funLabe: 'colorWheel' }, { id: 2, funName: '色环', avatar: pic2, funLabe: 'tempWheel' }, { id: 3, funName: '手势+动画', avatar: pic3, funLabe: 'panResponder' }, { id: 3, funName: '滑动条', avatar: pic4, funLabe: 'slider' }]
         }
     }
 

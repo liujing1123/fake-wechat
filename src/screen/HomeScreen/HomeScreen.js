@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, TouchableHighlight, Image, View, Button, Text, FlatList, SafeAreaView ,StatusBar} from "react-native";
 import { Badge } from 'react-native-elements';
-const pic1 = require('../../img/transmission.jpg')
-const pic2 = require('../../img/JackMa.jpg')
-const pic3 = require('../../img/handsomeboy.jpg')
+const pic1 = require('../../../img/transmission.jpg')
+const pic2 = require('../../../img/JackMa.jpg')
+const pic3 = require('../../../img/handsomeboy.jpg')
 export default class HomeScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return {
