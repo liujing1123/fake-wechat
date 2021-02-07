@@ -1,2 +1,2 @@
-import MoveHandle from './MoveHandle'
+import MoveHandle from './MoveHandleNew'
 export default MoveHandle
