@@ -4,7 +4,7 @@ import ColorWheel from '../../component/funComponents/ColorWheel'
 import TempAndColorWheel from '../../component/funComponents/TempAndColorWheel'
 import MoveHandle from '../../component/funComponents/MoveHandle'
 import SliderNew from '../../component/funComponents/SliderNew'
-
+import VoiceLine from '../../component/funComponents/VoiceLine'
 export function mapfuncomponent(funName) {
     console.log('mapfuncomponent', funName);
     if (funName) {
@@ -20,6 +20,9 @@ export function mapfuncomponent(funName) {
                 break;
             case 'slider':
                 return (< SliderNew/>);
+                break;
+            case 'voiceline':
+                return (< VoiceLine/>);
                 break;
 
         }
