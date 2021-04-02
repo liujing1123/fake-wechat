@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Dimensions, TouchableOpacity, Text } from 'react-native';
 import { Surface, Shape, Path } from '@react-native-community/art'
+// "@react-native-community/art": "^1.1.2",
 import _ from 'lodash';
 const ScreenWidth = Dimensions.get('window').width;
 
