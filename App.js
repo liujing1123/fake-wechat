@@ -65,7 +65,7 @@ function HomeStackScreen() {
             return (
               <View style={{ display: 'flex', flexDirection: 'row', flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
                 <CommonIcon
-                  name='icon-ellipses' size={20} color='#000'
+                  name='icon-ellipses' size={20} color='#000000'
                 />
                 <View style={{ width: 10 }}></View>
               </View>
