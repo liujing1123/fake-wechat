@@ -79,6 +79,8 @@ target 'myapp' do
 
   pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'myappTests' do
     inherit! :complete
     # Pods for testing

@@ -200,11 +200,11 @@ export default function App() {
             tabBarVisible: checkTabVisible(navigation, "Home"),
           })}
           component={HomeStackScreen} />
-        <Tab.Screen name="AdressBook"
+        {/* <Tab.Screen name="AdressBook"
         options={(navigation) => ({
           tabBarVisible: checkTabVisible(navigation, "AdressBook"),
         })}
-        component={AdressBookStackScreen} />
+        component={AdressBookStackScreen} /> */}
         <Tab.Screen name="Find" component={FindStackScreen} />
         <Tab.Screen name="My" component={MyScreen} />
       </Tab.Navigator>
