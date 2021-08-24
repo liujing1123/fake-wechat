@@ -151,6 +151,38 @@ function FindStackScreen() {
 }
 
 
+const MyStack = createStackNavigator();
+function MyStackScreen() {
+  return (
+    <MyStack.Navigator>
+      <MyStack.Screen
+        name="Find"
+        component={MyScreen}
+        options={{
+          headerTitle:'我的',
+          // headerTransparent: true,
+          headerTitleStyle: { fontSize: 18 },
+          headerStyle: { height: 50, backgroundColor: "#EEEEEE" },
+          headerRight: () => {
+            return (
+              <View style={{ display: 'flex', flexDirection: 'row', flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
+                <CommonIcon
+                  name='icon-search' size={20} color='#000'
+                />
+                <View style={{ width: 15 }}></View>
+                <CommonIcon
+                  name='icon-add' size={20} color='#000'
+                />
+                <View style={{ width: 10 }}></View>
+              </View>
+            )
+          },
+        }}
+      />
+    </MyStack.Navigator>
+  );
+}
+
 function checkTabVisible(navigation, visibleRouteName) {
   if(navigation.route&&navigation.route.state){
     const routeName = navigation.route.state.routeNames[navigation.route.state.index];
@@ -206,7 +238,7 @@ export default function App() {
         })}
         component={AdressBookStackScreen} /> */}
         <Tab.Screen name="Find" component={FindStackScreen} />
-        <Tab.Screen name="My" component={MyScreen} />
+        <Tab.Screen name="My" component={MyStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
